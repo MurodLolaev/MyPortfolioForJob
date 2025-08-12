@@ -1,0 +1,23 @@
+﻿@model List<Project>
+
+<h2>Проекты</h2>
+
+<form asp-action="Search" method="get">
+    <input type="text" name="creatorName" placeholder="Поиск по имени создателя" />
+    <button type="submit">Поиск</button>
+</form>
+
+@foreach (var project in Model)
+{
+    <div>
+        <h3>@project.Name</h3>
+        <p>@project.Description</p>
+        <p>Создатель: @project.Creator.Name</p>
+
+        @if (project.UserId == User.GetUserId()) // через Claims
+        {
+            <a asp-action="Edit" asp-route-id="@project.Id">Редактировать</a>
+            <a asp-action="Delete" asp-route-id="@project.Id">Удалить</a>
+        }
+    </div>
+}

@@ -1,0 +1,16 @@
+﻿@model List<MyPortfolio.Models.AboutMe>
+
+<div class="container">
+    @foreach(var item in Model)
+    {
+        <h1>@item.FullName</h1>
+        <img src="@item.PhotoPath" alt="Фото" width="200" />
+        <p><strong>Биография:</strong> @item.Bio</p>
+        <p><strong>Навыки:</strong> @item.Skills</p>
+        <p><strong>Контакты:</strong> @item.Contacts</p>
+        <p><strong>Хобби:</strong> @item.Hobbies</p>
+
+        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary">Удалить</a>
+    }
+    
+</div>

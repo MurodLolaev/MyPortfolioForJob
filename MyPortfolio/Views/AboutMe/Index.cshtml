@@ -1,0 +1,16 @@
+﻿@model AboutMe
+<div>
+    <button class="btn btn-secondary">
+        <a asp-area=""
+           asp-controller="AboutMe"
+           asp-action="Add">Добавить </a>
+    </button>
+</div>
+<div class="about-me">
+    <img src="@Model.PhotoPath" width="150" class="rounded-circle" />
+    <h2>@Model.FullName</h2>
+    <p>@Model.Bio</p>
+    <a href="@Model.LinkedInUrl" target="_blank">LinkedIn</a>
+
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Редактировать</a>
+</div>

@@ -1,0 +1,33 @@
+﻿@model AboutMe
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div>
+        <label>ФИО</label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+    <div>
+        <label>Биография</label>
+        <textarea asp-for="Bio" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Навыки</label>
+        <textarea asp-for="Skills" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Контакты</label>
+        <textarea asp-for="Contacts" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Хобии</label>
+        <textarea asp-for="Hobbies" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>LinkedIn</label>
+        <input asp-for="LinkedInUrl" class="form-control" />
+    </div>
+    <div>
+        <label>Фото</label>
+        <input type="file" name="photo" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

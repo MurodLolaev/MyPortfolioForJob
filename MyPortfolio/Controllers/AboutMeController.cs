@@ -1,0 +1,80 @@
+﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MyPortfolio;
+using MyPortfolio.Interfaces;
+using MyPortfolio.Models;
+
+public class AboutMeController : Controller
+{
+    private readonly IAboutMeRepository _repo;
+    private readonly PortfolioDb portfolioDb;
+    private readonly IWebHostEnvironment _env;
+
+    public AboutMeController(IAboutMeRepository repo,PortfolioDb portfolio, IWebHostEnvironment env)
+    {
+        _repo = repo;
+        portfolioDb = portfolio;
+       _env = env;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var model = await _repo.GetAsync();
+        return View(model);
+    }
+
+    public IActionResult Add() => View();
+
+    [HttpPost]
+    public async Task<IActionResult> Add(AboutMe model)
+    {
+        model.PhotoPath = "images/4.png";         
+        if (!ModelState.IsValid)
+        {
+            _repo.AddAsync(model);
+            return RedirectToAction("Index");
+        }        
+        return View(model);
+    }
+
+    public async Task<IActionResult> Edit(int id)
+    {        
+        var model = await _repo.GetByIdAsync(id);
+        if(model == null)
+        {
+            return NotFound();
+        }
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, AboutMe model)
+    {
+        model.PhotoPath = "images/4.png";
+        if (id  != model.Id)
+        {
+            return NotFound();
+        }
+        if (!ModelState.IsValid)
+        {
+            await _repo.EditAsync(model);
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(model);
+    }
+
+    public IActionResult Delete(int id)
+    {
+        _repo.DeleteAsync(id);
+        return RedirectToAction(nameof(Index));
+
+    }
+
+    public async Task<IActionResult> Search(string query)
+    {
+        var results = await _repo.SearchAsync(query);
+        return View("SearchResults", results);
+    }
+}
