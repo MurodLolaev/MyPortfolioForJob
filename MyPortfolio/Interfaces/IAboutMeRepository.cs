@@ -10,6 +10,8 @@ namespace MyPortfolio.Interfaces
         Task AddAsync(AboutMe aboutMe);     
         Task EditAsync(AboutMe aboutMe);
         void  DeleteAsync(int id);
-        Task<List<AboutMe>> SearchAsync(string query);
+        Task<List<AboutMe>> SearchAsync(string query);           
+        Task<string> SaveUploadedFileAsync(IFormFile file);         
+
     }
 }

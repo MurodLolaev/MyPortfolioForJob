@@ -1,0 +1,48 @@
+﻿@model Login
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+<!-- 🌈 Центрированный контейнер -->
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(135deg, #e3f2fd, #ffffff);">
+    <form method="post" class="p-4 rounded-4 shadow-lg bg-white" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center text-gradient mb-4"><i class="bi bi-person-circle me-2"></i> Вход в систему</h3>
+
+        <div class="text-danger mb-3" asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+
+        <div class="mb-3">
+            <label asp-for="UserName" class="form-label">Логин</label>
+            <input asp-for="UserName" class="form-control rounded-3" placeholder="Введите логин" />
+            <span asp-validation-for="UserName" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Пароль</label>
+            <input asp-for="Password" type="password" class="form-control rounded-3" placeholder="Введите пароль" />
+            <span asp-validation-for="Password" class="text-danger small"></span>
+        </div>
+
+        <div class="form-check mb-3">
+            <input type="checkbox" name="RememberMe" value="true" class="form-check-input" id="rememberMe" />
+            <label class="form-check-label" for="rememberMe">Запомнить меня</label>
+        </div>
+
+        <div class="d-grid mb-3">
+            <button type="submit" asp-controller="Account" asp-action="Login" class="btn btn-primary rounded-pill">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Войти
+            </button>
+        </div>
+
+        <div class="text-center">
+            <a asp-controller="Account" asp-action="Register" asp-route-ReturnUrl="@Model.ReturnUrl" class="text-decoration-none text-muted">
+                <i class="bi bi-person-plus-fill me-1"></i> Регистрация нового пользователя
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

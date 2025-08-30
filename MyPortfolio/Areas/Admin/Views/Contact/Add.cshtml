@@ -1,0 +1,58 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Добавить контакты";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(135deg, #f0f4ff, #ffffff);">
+    <form asp-action="Add" method="post" enctype="multipart/form-data" class="p-4 rounded-4 shadow-lg bg-glass animate__animated animate__fadeInUp" style="width: 100%; max-width: 700px;">
+        <h3 class="text-center text-gradient mb-4">
+            <i class="bi bi-person-lines-fill me-2"></i> Добавление контактов
+        </h3>
+
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label">📞 Телефон</label>
+            <input asp-for="Phone" class="form-control rounded-3" placeholder="+992..." />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">📧 Почта</label>
+            <textarea asp-for="Email" class="form-control rounded-3" rows="2" placeholder="example@mail.com"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label">🏠 Адрес</label>
+            <textarea asp-for="Address" class="form-control rounded-3" rows="2" placeholder="Улица, дом, район"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="City" class="form-label">🌆 Город</label>
+            <textarea asp-for="City" class="form-control rounded-3" rows="1" placeholder="г. Душанбе"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Whatsapp" class="form-label">💬 WhatsApp</label>
+            <textarea asp-for="Whatsapp" class="form-control rounded-3" rows="1" placeholder="wa.me/..."></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Telegram" class="form-label">📨 Telegram</label>
+            <textarea asp-for="Telegram" class="form-control rounded-3" rows="1" placeholder="t.me/..."></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="GitHub" class="form-label">🐙 GitHub</label>
+            <input asp-for="GitHub" class="form-control rounded-3" placeholder="https://github.com/..." />
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Linkedin" class="form-label">💼 LinkedIn</label>
+            <input asp-for="Linkedin" class="form-control rounded-3" placeholder="https://linkedin.com/in/..." />
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success rounded-pill">
+                <i class="bi bi-check-circle me-1"></i> Создать
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+﻿@model Register
+
+<!-- 🌈 Центрированный контейнер с прозрачной карточкой -->
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(135deg, #e3f2fd, #ffffff);">
+    <form method="post" class="p-4 rounded-4 shadow-lg bg-glass animate__animated animate__fadeInDown" style="width: 100%; max-width: 450px;">
+        <h3 class="text-center text-gradient mb-4">
+            <i class="bi bi-person-plus-fill me-2"></i> Регистрация
+        </h3>
+
+        <div class="text-danger mb-3" asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+
+        <div class="mb-3">
+            <label asp-for="UserName" class="form-label">Имя пользователя</label>
+            <input asp-for="UserName" class="form-control rounded-3" placeholder="Введите имя" />
+            <span asp-validation-for="UserName" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Пароль</label>
+            <input asp-for="Password" type="password" class="form-control rounded-3" placeholder="Введите пароль" />
+            <span asp-validation-for="Password" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="ConfirmPassword" class="form-label">Подтверждение пароля</label>
+            <input asp-for="ConfirmPassword" type="password" class="form-control rounded-3" placeholder="Повторите пароль" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" asp-controller="Account" asp-action="Register" class="btn btn-success rounded-pill">
+                <i class="bi bi-check-circle me-1"></i> Зарегистрироваться
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -20,7 +20,9 @@ namespace MyPortfolio.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await _aboutMeRepository.GetAllAsync();
+            _logger.LogInformation("Загружена главная страница портфолио");
+
+            var model = await _aboutMeRepository.GetAsync();
             return View(model);
         }
         public IActionResult Delete(int id)

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyPortfolio.Models
 {     
@@ -9,17 +10,16 @@ namespace MyPortfolio.Models
         public string Bio { get; set; }
         public string Skills { get; set; }
         public string Contacts { get; set; }
+        public string Job { get; set; }
         public string Hobbies { get; set; }
-        public string PhotoPath { get; set; }
-        public string LinkedInUrl { get; set; }
-
-        public string RoleName { get; set; }
-        public ICollection<Project> Projects { get; set; } = new List<Project>();
-
-
+        public string? PotoPath { get; set; }
+        [NotMapped]
+        public IFormFile? UploadedFile { get; set; }
+        public string LinkedInUrl { get; set; }       
+       
         public AboutMe() { }
 
-        public AboutMe(int id, string fullName, string bio, string skills, string contacts, string hobbies, string photoPath, string linkedInUrl)
+        public AboutMe(int id, string fullName, string bio, string skills, string contacts, string hobbies, IFormFile photoPath, string linkedInUrl)
         {
             Id = id;
             FullName = fullName;
@@ -27,7 +27,7 @@ namespace MyPortfolio.Models
             Skills = skills;
             Contacts = contacts;
             Hobbies = hobbies;
-            PhotoPath = photoPath;
+            UploadedFile = photoPath;
             LinkedInUrl = linkedInUrl;
         }
     }

@@ -8,8 +8,9 @@ namespace MyPortfolio.Interfaces
         Task<Project> GetByIdAsync(int id);
         Task AddAsync(Project project);
         Task UpdateAsync(Project project);
-        Task DeleteAsync(int id);
-        Task<List<Project>> SearchByCreatorAsync(string creatorName);
+        Task DeleteAsync(int id);         
+        Task<List<Project>> SearchByNameAsync(string name);
+        Task<string> UploadedProjectAsync(IFormFile file);
 
     }
 }

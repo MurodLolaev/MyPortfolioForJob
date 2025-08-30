@@ -1,0 +1,38 @@
+﻿
+
+
+<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+
+    <div class="col-12 col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-primary"><i class="bi bi-folder2-open me-2"></i> Проекты</h2>
+            <a asp-controller="Project" asp-action="Create" class="btn btn-success btn-sm">
+                <i class="bi bi-plus-circle me-1"></i> Добавить
+            </a>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var project in Model)
+            {
+                <div class="col animate__animated animate__fadeInUp">
+                    <div class="card h-100 shadow-lg border-0 rounded-4 project-card">
+                        <img src="@project.Image" class="card-img-top rounded-top-4" alt="Фото проекта" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">@project.Name</h5>
+                            <p class="card-text text-muted">@project.Description</p>
+                            <p>
+                                <i class="bi bi-github me-1"></i>
+                                <a href="@project.Link" target="_blank">@project.Link</a>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-outline-primary btn-sm">✏️ Редактировать</a>
+                            <a asp-action="Delete" asp-route-id="@project.Id" class="btn btn-outline-danger btn-sm">🗑️ Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+
+    <div class="col-12 col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-primary"><i class="bi bi-folder2-open me-2"></i> Проекты</h2>
+            <a asp-controller="Certificate" asp-action="Add" class="btn btn-success btn-sm">
+                <i class="bi bi-plus-circle me-1"></i> Добавить
+            </a>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var cert in Model)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>@cert.Name</h5>
+                        <p>Дата: @cert.CreatedAt.ToShortDateString()</p>
+                        <a href="@cert.Image" target="_blank" class="btn btn-outline-primary btn-sm">📄 Посмотреть</a>
+
+                        <a asp-controller="Certificate" asp-action="Edit" asp-route-id="@cert.Id" class="btn btn-outline-warning btn-sm me-1">
+                            <i class="bi bi-pencil-square"></i> Редактировать
+                        </a>
+
+                        <!-- Кнопка вызова модального окна -->
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@cert.Id">
+                            <i class="bi bi-trash"></i> Удалить
+                        </button>
+
+                        <!-- 🔻 Модальное окно для подтверждения удаления -->
+                        <div class="modal fade" id="deleteModal-@cert.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@cert.Id" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-danger text-white">
+                                        <h5 class="modal-title" id="deleteModalLabel-@cert.Id">Удалить сертификат</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Вы уверены, что хотите удалить сертификат <strong>@cert.Name</strong>? Это действие необратимо.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form asp-action="Delete" method="post">
+                                            <input type="hidden" name="id" value="@cert.Id" />
+                                            <button type="submit" class="btn btn-danger">Да, удалить</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

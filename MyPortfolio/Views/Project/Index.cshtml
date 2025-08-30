@@ -1,23 +1,33 @@
-﻿@model List<Project>
+﻿<div class="col-12 col-md-9 mx-auto">
+    <!-- 🌟 Центрированный заголовок -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-gradient">
+            <i class="bi bi-stars me-2"></i> Мои проекты
+        </h2>
+        <p class="text-muted">Здесь собраны мои лучшие работы — от веб-сайтов до интерактивных приложений</p>
+    </div>
 
-<h2>Проекты</h2>
-
-<form asp-action="Search" method="get">
-    <input type="text" name="creatorName" placeholder="Поиск по имени создателя" />
-    <button type="submit">Поиск</button>
-</form>
-
-@foreach (var project in Model)
-{
-    <div>
-        <h3>@project.Name</h3>
-        <p>@project.Description</p>
-        <p>Создатель: @project.Creator.Name</p>
-
-        @if (project.UserId == User.GetUserId()) // через Claims
+    <!-- 🖼️ Галерея проектов -->
+    <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var project in Model)
         {
-            <a asp-action="Edit" asp-route-id="@project.Id">Редактировать</a>
-            <a asp-action="Delete" asp-route-id="@project.Id">Удалить</a>
+            <div class="col animate__animated animate__fadeInUp">
+                <div class="card h-100 shadow-lg border-0 rounded-4 project-card">
+                    <img src="@project.Image" class="card-img-top rounded-top-4" alt="Фото проекта" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@project.Name</h5>
+                        <p class="card-text text-muted">@project.Description</p>
+                        <p>
+                            <i class="bi bi-github me-1"></i>
+                            <a href="@project.Link" target="_blank">@project.Link</a>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent d-flex justify-content-between">
+                        <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-outline-primary btn-sm">✏️ Редактировать</a>
+                        <a asp-action="Delete" asp-route-id="@project.Id" class="btn btn-outline-danger btn-sm">🗑️ Удалить</a>
+                    </div>
+                </div>
+            </div>
         }
     </div>
-}
+</div>

@@ -1,0 +1,38 @@
+﻿@model Contact
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Телефон</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div>
+        <label>Почта</label>
+        <textarea asp-for="Email" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Аддресс</label>
+        <textarea asp-for="Address" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Город</label>
+        <textarea asp-for="City" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Ватсап</label>
+        <textarea asp-for="Whatsapp" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Телеграмм</label>
+        <textarea asp-for="Telegram" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>GitHub</label>
+        <input asp-for="GitHub" class="form-control" />
+    </div>
+    <div>
+        <label>LinkedIn</label>
+        <input asp-for="Linkedin" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Редактировать</button>
+</form>

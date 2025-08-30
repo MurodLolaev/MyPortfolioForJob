@@ -8,9 +8,11 @@ public class AboutMeRepository : IAboutMeRepository
 {
     private readonly PortfolioDb _context;
     private readonly IAboutMeRepository _aboutMeRepository;
-    public AboutMeRepository(PortfolioDb context)
+    private readonly IWebHostEnvironment _env;
+    public AboutMeRepository(PortfolioDb context, IWebHostEnvironment env)
     {
         _context = context;
+        _env = env;
     }
 
     public async Task<AboutMe> GetAsync()
@@ -55,5 +57,25 @@ public class AboutMeRepository : IAboutMeRepository
             .ToListAsync();
     }
 
+  
+   public async Task<string> SaveUploadedFileAsync(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return null;
+
+        var fileName = Path.GetFileName(file.FileName);
+        var path = Path.Combine(_env.WebRootPath, "images", fileName);
+
+        // Удалить, если файл уже существует
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        using (var stream = new FileStream(path, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        return "/images/" + fileName;
+    }
    
 }

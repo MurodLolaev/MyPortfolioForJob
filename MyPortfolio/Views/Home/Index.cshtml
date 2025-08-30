@@ -1,16 +1,128 @@
-﻿@model List<MyPortfolio.Models.AboutMe>
+﻿@model AboutMe
 
-<div class="container">
-    @foreach(var item in Model)
-    {
-        <h1>@item.FullName</h1>
-        <img src="@item.PhotoPath" alt="Фото" width="200" />
-        <p><strong>Биография:</strong> @item.Bio</p>
-        <p><strong>Навыки:</strong> @item.Skills</p>
-        <p><strong>Контакты:</strong> @item.Contacts</p>
-        <p><strong>Хобби:</strong> @item.Hobbies</p>
+<div class="text-center mb-5">
+    <h2 class="fw-bold text-gradient">
+        <i class="bi btn-gradient me-2"></i>
+    </h2>
+</div>
 
-        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary">Удалить</a>
+<style>
+    body {
+        background: #e3f2fd;
+        padding: 40px 0;
+        font-family: 'Segoe UI', sans-serif;
     }
-    
+
+    .a4-page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 20mm;
+        margin: auto;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        color: #000;
+        border: 1px solid #ccc;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #007bff;
+        margin-right: 20px;
+    }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .info-block h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: #007bff;
+    }
+
+    .info-block p {
+        margin: 4px 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .section {
+        margin-top: 20px;
+    }
+
+        .section h3 {
+            font-size: 1.2rem;
+            color: #343a40;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 10px;
+            white-space: pre-line;
+        }
+
+    .linkedin {
+        font-size: 0.95rem;
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+
+<div class="a4-page">
+    <!-- 🔷 Заголовок профиля -->
+    <div class="header">
+        <div class="profile-photo">
+            <img src="@(Model.PotoPath ?? "/images/default-3.png")" alt="Фото" />
+        </div>
+        <div class="info-block">
+            <h1>@Model.FullName</h1>            
+        </div>
+    </div>
+
+    <!-- 🔹 Биография -->
+    <div class="section">
+        <h3>Обо мне</h3>
+        <p>@Html.Raw(Model.Bio?.Replace("\n", "<br />"))</p>
+    </div>
+
+    <!-- 🔹 Навыки -->
+    <div class="section">
+        <h3>Навыки</h3>
+        <p>@Html.Raw(Model.Skills?.Replace("_", "<br />"))</p>
+    </div>
+
+    <!-- 🔹 Образование -->
+    <div class="section">
+        <h3>Образование</h3>
+        <p>@Html.Raw(Model.Contacts?.Replace("_", "<br />"))</p>
+    </div>
+
+    <!-- 🔹 Опыт работы -->
+    <div class="section">
+        <h3>Опыт работы</h3>
+        <p>@Html.Raw(Model.Job?.Replace("_", "<br />"))</p>
+    </div>
+
+    <!-- 🔹 Хобби -->
+    <div class="section">
+        <h3>Хобби</h3>
+        <p>@Html.Raw(Model.Hobbies?.Replace("\n", "<br />"))</p>
+    </div>
 </div>

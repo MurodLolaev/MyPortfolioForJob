@@ -1,0 +1,27 @@
+﻿@model Certificate
+
+<div class="container my-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-white">
+            <h4><i class="bi bi-pencil-square me-2"></i> Редактировать сертификат</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Название</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Image" class="form-label">Изображение / PDF путь</label>
+                    <input asp-for="Image" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-success">💾 Сохранить</button>
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">Назад</a>
+            </form>
+        </div>
+    </div>
+</div>

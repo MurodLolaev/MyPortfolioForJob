@@ -1,0 +1,72 @@
+﻿@model AboutMe
+@{
+    ViewData["Title"] = "Редактировать информацию о себе";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(135deg, #f8f9ff, #ffffff);">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="p-4 rounded-4 shadow-lg bg-white bg-opacity-75 animate__animated animate__fadeInUp" style="width: 100%; max-width: 700px;">
+        <h3 class="text-center text-gradient mb-4">
+            <i class="bi bi-pencil-square me-2"></i> Редактирование профиля
+        </h3>
+
+        <input type="hidden" asp-for="Id" />
+
+        <!-- 🔹 ФИО -->
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label">ФИО</label>
+            <input asp-for="FullName" class="form-control rounded-3" placeholder="Ваше полное имя" />
+        </div>
+
+        <!-- 🔹 Биография -->
+        <div class="mb-3">
+            <label asp-for="Bio" class="form-label">Биография</label>
+            <textarea asp-for="Bio" class="form-control rounded-3" rows="3" placeholder="Кратко о себе, профессиональные цели и интересы"></textarea>
+        </div>
+
+        <!-- 🔹 Навыки -->
+        <div class="mb-3">
+            <label asp-for="Skills" class="form-label">Навыки</label>
+            <textarea asp-for="Skills" class="form-control rounded-3" rows="2" placeholder="C#, ASP.NET Core, Razor, Bootstrap, SQL..."></textarea>
+        </div>
+
+        <!-- 🔹 Образование -->
+        <h5 class="text-primary fw-bold mt-4 mb-2"><i class="bi bi-mortarboard me-1"></i> Образование</h5>
+        <div class="mb-3">
+            <label asp-for="Contacts" class="form-label">Учебные заведения</label>
+            <textarea asp-for="Contacts" class="form-control rounded-3" rows="3" placeholder="ТНУ им. А. Рудаки — Менеджмент туризма (2018–2022)&#10;IRON PROGRAMMER — C# / .NET Developer (2023–2024)"></textarea>
+        </div>
+
+        <!-- 🔹 Опыт работы -->
+        <h5 class="text-primary fw-bold mt-4 mb-2"><i class="bi bi-briefcase me-1"></i> Опыт работы</h5>
+        <div class="mb-3">
+            <label asp-for="Job" class="form-label">Места работы</label>
+            <textarea asp-for="Job" class="form-control rounded-3" rows="3" placeholder="Telecom Technology — Инженер-системотехник (2024–н.в.)&#10;RowTech — .NET Developer (2024–н.в.)"></textarea>
+        </div>
+
+        <!-- 🔹 Хобби -->
+        <h5 class="text-primary fw-bold mt-4 mb-2"><i class="bi bi-heart me-1"></i> Хобби</h5>
+        <div class="mb-3">
+            <label asp-for="Hobbies" class="form-label">Увлечения</label>
+            <textarea asp-for="Hobbies" class="form-control rounded-3" rows="2" placeholder="UI-дизайн, чтение, помощь другим разработчикам..."></textarea>
+        </div>
+
+        <!-- 🔹 LinkedIn -->
+        <div class="mb-3">
+            <label asp-for="LinkedInUrl" class="form-label">Профиль LinkedIn</label>
+            <input asp-for="LinkedInUrl" class="form-control rounded-3" placeholder="https://linkedin.com/in/..." />
+        </div>
+
+        <!-- 🔹 Фото -->
+        <div class="mb-4">
+            <label class="form-label">Фото профиля</label>
+            <input type="file" name="photo" class="form-control rounded-3" />
+        </div>
+
+        <!-- 🔹 Кнопка -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary rounded-pill">
+                <i class="bi bi-save me-1"></i> Сохранить
+            </button>
+        </div>
+    </form>
+</div>

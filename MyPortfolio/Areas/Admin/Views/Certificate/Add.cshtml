@@ -1,0 +1,37 @@
+﻿@model Certificate
+
+@{
+    ViewData["Title"] = "Добавить сертификат";
+}
+
+<div class="container my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0"><i class="bi bi-award me-2"></i> Добавить сертификат</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Add" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Название сертификата</label>
+                    <input asp-for="Name" class="form-control" placeholder="Например: C# Developer Certificate" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="UploadedFile" class="form-label">Загрузить PDF-файл</label>
+                    <input asp-for="UploadedFile" type="file" class="form-control" accept=".pdf" />
+                    <span asp-validation-for="UploadedFile" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-cloud-upload"></i> Сохранить сертификат
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">Назад</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

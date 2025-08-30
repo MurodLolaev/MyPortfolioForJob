@@ -1,0 +1,39 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Создать проект";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(135deg, #f8faff, #ffffff);">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="p-4 rounded-4 shadow-lg bg-glass animate__animated animate__fadeInUp" style="width: 100%; max-width: 700px;">
+        <h3 class="text-center text-gradient mb-4">
+            <i class="bi bi-folder-plus me-2"></i> Создание проекта
+        </h3>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">📁 Название проекта</label>
+            <input asp-for="Name" class="form-control rounded-3" placeholder="Например: RowTech CRM" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">📝 Описание проекта</label>
+            <textarea asp-for="Description" class="form-control rounded-3" rows="3" placeholder="Краткое описание, технологии, цель"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Link" class="form-label">🔗 Ссылка на GitHub</label>
+            <textarea asp-for="Link" class="form-control rounded-3" rows="2" placeholder="https://github.com/..."></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">🖼️ Фото проекта</label>
+            <input type="file" name="UploadedFile" class="form-control rounded-3" />
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary rounded-pill">
+                <i class="bi bi-save me-1"></i> Сохранить
+            </button>
+        </div>
+    </form>
+</div>

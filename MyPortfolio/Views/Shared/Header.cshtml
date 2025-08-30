@@ -1,0 +1,80 @@
+﻿<header class="sticky-top animate__animated animate__fadeInDown">
+    <nav class="navbar navbar-expand-lg bg-glass border-bottom shadow-sm px-3 py-2">
+        <div class="container-fluid">
+            <!-- 🔷 Логотип -->
+            <a class="navbar-brand d-flex align-items-center text-gradient fw-bold fs-4" asp-controller="Home" asp-action="Index">
+                <img src="~/images/3.png" alt="Вароруд" width="36" height="36" class="me-2 rounded-circle shadow-sm" />
+                Портфолио
+            </a>
+
+            <!-- ☰ Мобильное меню -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 🔗 Навигация + Поиск + Авторизация -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link nav-hover" asp-controller="Home" asp-action="Index">
+                            <i class="bi bi-house-door me-1"></i> Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-hover" asp-controller="Project" asp-action="Index">
+                            <i class="bi bi-folder2-open me-1"></i> Проекты
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-hover" asp-controller="Certificate" asp-action="Index">
+                            <i class="bi bi-award me-1"></i> Сертификаты
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-hover" asp-controller="Contact" asp-action="Index">
+                            <i class="bi bi-telephone me-1"></i> Контакты
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 🔍 Поиск -->
+                <form method="get" asp-controller="Project" asp-action="Search" class="d-flex me-3">
+                    <input type="text" name="name" class="form-control me-2 rounded-pill" placeholder="Поиск..." />
+                    <button type="submit" class="btn btn-outline-primary rounded-pill">🔍</button>
+                </form>
+
+                <!-- 👤 Авторизация -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="text-muted small">
+                            <i class="bi bi-person-circle me-1"></i> @User.Identity.Name
+                        </span>
+                        <hr />
+                        <li class="nav-item">
+                            <div class="card bg-glass border-0 shadow-sm text-center p-2"
+                                 style="width: 100%; max-width: 180px;">
+                                <i class="bi bi-person-gear fs-4 text-primary mb-1"></i>
+                                <a asp-area="Admin" asp-controller="About" asp-action="Index"
+                                   class="btn btn-outline-primary btn-sm rounded-pill w-100">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i> Админ
+                                </a>
+                            </div>
+                        </li>
+
+                        <a class="btn btn-outline-danger btn-sm rounded-pill" asp-area="" asp-controller="Account" asp-action="Logout">
+                            <i class="bi bi-box-arrow-right me-1"></i> Выйти
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-outline-success btn-sm rounded-pill" asp-controller="Account" asp-action="Login">
+                        <i class="bi bi-person-fill me-1"></i> Войти
+                    </a>
+                }
+            </div>
+        </div>
+    </nav>
+</header>

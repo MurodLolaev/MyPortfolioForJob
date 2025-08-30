@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+using System.IO.Pipes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolio;
@@ -28,15 +30,14 @@ public class AboutMeController : Controller
 
     [HttpPost]
     public async Task<IActionResult> Add(AboutMe model)
-    {
-        model.PhotoPath = "images/4.png";         
-        if (!ModelState.IsValid)
-        {
-            _repo.AddAsync(model);
-            return RedirectToAction("Index");
-        }        
-        return View(model);
+    {  
+        model.PotoPath = await _repo.SaveUploadedFileAsync(model.UploadedFile);
+
+        await _repo.AddAsync(model);
+        return RedirectToAction("Index");   
     }
+
+    
 
     public async Task<IActionResult> Edit(int id)
     {        
@@ -51,13 +52,14 @@ public class AboutMeController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(int id, AboutMe model)
     {
-        model.PhotoPath = "images/4.png";
+        
         if (id  != model.Id)
         {
             return NotFound();
         }
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
         {
+            model.PotoPath = await _repo.SaveUploadedFileAsync(model.UploadedFile);
             await _repo.EditAsync(model);
             return RedirectToAction(nameof(Index));
         }
