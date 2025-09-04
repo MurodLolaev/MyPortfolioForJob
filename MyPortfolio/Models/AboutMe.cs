@@ -2,7 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyPortfolio.Models
-{     
+{
+    [Table("AboutMe")]
+
     public class AboutMe
     {        
         public int Id { get; set; }

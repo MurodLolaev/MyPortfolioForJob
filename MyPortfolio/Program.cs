@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using MyPortfolio;
@@ -28,6 +29,7 @@ builder.Services.AddDbContext<PortfolioDb>(options =>
 
 
 
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromHours(8);
@@ -46,6 +48,7 @@ builder.Services.AddScoped<ICertificateRepository, CertificateRepository>();
 
 
 builder.Services.AddControllersWithViews();
+
 
 
 var app = builder.Build();
@@ -68,7 +71,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthentication();
